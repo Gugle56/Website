@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>สถานะงาน</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 16px;
+      text-align: center;
+    }
+
+    img {
+      width: 150px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #333;
+    }
+
+    input, textarea {
+      width: 100%;
+      max-width: 400px;
+      font-size: 16px;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  {% if status == "doing" %}
+    <img src="/static/doing.gif">
+    <h2>กำลังทำ...</h2>
+
+  {% elif status == "waiting" %}
+    <img src="/static/waiting.gif">
+    <h2>รออีก {{ position }} คิว</h2>
+    <div class="skip-link">
+      <a href="/skip">ลัด 1 คิว 10 บาท</a>
+    </div>
+
+  {% elif status == "done" %}
+    <img src="/static/done.png">
+    <h2>เสร็จแล้ว!</h2>
+    <a href="/">จ้างงานเพิ่ม</a>
+
+  {% else %}
+    <form method="post">
+      <h2>Non work</h2>
+      <input type="text" name="name" placeholder="ชื่อ" required><br>
+      <input type="text" name="subject" placeholder="วิชา/รายละเอียดงาน" required><br>
+      <textarea name="description" placeholder="ช่องทางติดต่อ/เบอร์โทร" rows="4" required></textarea><br>
+      <button type="submit">จองคิว</button>
+    </form>
+  {% endif %}
+</body>
+</html>

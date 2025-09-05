@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: white;
+      padding: 40px;
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    form {
+      text-align: center;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0077ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>📋 รายการคิวงาน</h1>
+  <ul>
+    {% for user in queue %}
+      <li>{{ user.name }} | {{ user.subject }} | {{ user.description }} | สถานะ: {{ user.status }}</li>
+    {% endfor %}
+  </ul>
+
+  {% if queue %}
+    <form method="post">
+      <button type="submit">✅ งานบนสุดเสร็จแล้ว</button>
+    </form>
+  {% else %}
+    <p style="text-align: center;">ไม่มีงานในคิว</p>
+  {% endif %}
+</body>
+</html>

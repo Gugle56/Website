@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ตรวจสอบลัดคิว</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+      padding: 30px;
+    }
+    .slip {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+    }
+    img {
+      max-width: 300px;
+      display: block;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 6px 14px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>รายการแจ้งโอนขอลัดคิว</h2>
+
+  {% for s in slips %}
+    <div class="slip">
+      <p><strong>User ID:</strong> {{ s.id }}</p>
+      <img src="/static/slips/{{ s.file }}">
+      <form method="post">
+        <input type="hidden" name="user_id" value="{{ s.id }}">
+        <button type="submit">✅ อนุมัติลัดคิว</button>
+      </form>
+    </div>
+  {% else %}
+    <p>📭 ไม่มีรายการรออนุมัติ</p>
+  {% endfor %}
+
+  <br><a href="/">🔙 กลับหน้าแรก</a>
+</body>
+</html>
