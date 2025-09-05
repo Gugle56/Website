@@ -1,0 +1,14 @@
+input, button, select, textarea {
+  font-size: 18px;
+  padding: 12px;
+  width: 100%;
+}
+
+.container, .form {
+  max-width: 100%;
+  padding: 16px;
+}
+
+body {
+  font-size: 18px;
+}
